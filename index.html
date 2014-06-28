@@ -7,16 +7,22 @@
     <script src="./lib/polymer.min.js"></script>
     <!-- Load Chart.js -->
     <script src="./lib/chart.min.js"></script>
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <!-- Load Elements -->
     <link rel="import" href="./elements/chart.html">
+
+    <style>
+      #container_two {
+        width: 90%;
+        margin: auto;
+        text-align: center;
+      }
+    </style>
   </head>
   <body style="background: #D9EAF0">
-    <chart-pie values="[20, 30, 100]"></chart-pie>
-    <chart-doughnut values="[30, 50, 100, 40, 120]"></chart-doughnut>
-    <chart-polar-area values="[30, 90, 18, 58, 82]"></chart-polar-area>
-    <chart-radar></chart-radar>
-    <br>
-    <chart-line></chart-line>
-    <chart-bar></chart-bar>
+    <div id="container_two">
+      <chart-bar></chart-bar>
+    </div>
   </body>
 </html>
