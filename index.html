@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html ng-app="application" lang="en">
   <head>
     <meta charset="utf-8">
     <title>Polymer Dashboard</title>
@@ -10,6 +10,26 @@
     <!-- Load jQuery -->
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <!-- Load Elements -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script>
+      var myApp = angular.module('application', ['ui.router']);
+
+      myApp.config(function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise("/state1");
+
+        $stateProvider
+          .state('state1', {
+            url: "/state1",
+            templateUrl: "./partials/home.html",
+            controller: "HomePageController as controller"
+          })
+      });
+
+
+    </script>
+    <script src="./javascripts/controllers/home.js"></script>
+
     <link rel="import" href="./elements/chart.html">
     <link rel="import" href="./elements/d3.html">
 
@@ -22,9 +42,7 @@
     </style>
   </head>
   <body style="background: #D9EAF0">
-    <div id="container_two">
-      <chart-bar></chart-bar>
-      <dthree-bar></dthree-bar>
-    </div>
+    <div id="container_two" ui-view></div>
+
   </body>
 </html>

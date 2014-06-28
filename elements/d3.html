@@ -1,62 +1,11 @@
 <!-- Bar -->
 
-<polymer-element name="d3-bar" attributes="labels values colors">
+<polymer-element name="dthree-bar" attributes="message">
   <template>
-    <canvas id="canvas" width="450" height="200"></canvas>
+    <p>{{message}}</p>
   </template>
   <script>
-    Polymer("chart-bar", {
-      created: function () {
-        this.datasets = [];
-        this.values.forEach(function (val, i) {
-          this.datasets.push({
-            fillColor:    "rgba(" + this.colors[i] + ",0.5)",
-            strokeColor:  "rgba(" + this.colors[i] + ",1)",
-            data: this.values[i]
-          });
-        }, this);
-
-        this.data = { labels: this.labels(), datasets: this.datasets };
-
-        this.ctx = this.$.canvas.getContext('2d');
-
-        var canvas = this;
-
-        window.onresize = respondCanvas;
-
-        function respondCanvas() {
-          var options = {
-            scaleShowLabels: true,
-            scaleShowGridLines : false 
-          };
-
-          canvas.ctx.canvas.width = $('chart-bar').parent().width();
-          canvas.chart = new Chart(canvas.ctx).Bar(canvas.data, options);
-        }
-
-        respondCanvas();
-
-      },
-      labels: function () {
-        var array = [];
-        if ($(window).width() < 600) {
-          array = ["1", "2", "3", "4"];
-        } else {
-          array = ["Jan", "Feb", "Mar", "Apr"]
-        }
-        return array;
-      },
-      values: [
-        [65,59,90,81,56,55,40],
-        [28,48,40,19,96,27,100]
-      ],
-      colors: [
-        "239,146,131",
-        "252,223,165",
-        "184,226,186",
-        "194,182,160",
-        "254,205,129"
-      ]
+    Polymer("dthree-bar", {
     });
   </script>
 </polymer-element>
