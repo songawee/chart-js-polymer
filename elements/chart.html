@@ -22,7 +22,7 @@
 
         var canvas = this;
 
-        window.onresize = respondCanvas;
+        // window.onresize = respondCanvas;
 
         function respondCanvas() {
           var options = {
@@ -34,7 +34,7 @@
           canvas.chart = new Chart(canvas.ctx).Bar(canvas.data, options);
         }
 
-        respondCanvas();
+        respondCanvas.call(this);
 
       },
       labels: function () {
