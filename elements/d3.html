@@ -1,11 +1,61 @@
 <!-- Bar -->
 
-<polymer-element name="dthree-bar" attributes="message">
-  <template>
-    <p>{{message}}</p>
-  </template>
-  <script>
-    Polymer("dthree-bar", {
-    });
-  </script>
+<polymer-element name="dthree-bar" attributes="gdata">
+<template>
+  <style>
+    
+    .chart rect {
+      fill: blue;
+      stroke: black;
+    }
+
+    .chart rect:hover {
+      fill: green;
+    }
+
+    .chart text {
+      fill: white;
+      font: 10px sans-serif;
+      text-anchor: end;
+    }
+  </style>
+
+  <svg id="charts" class="chart"></svg>
+</template>
+<script>
+  Polymer("dthree-bar", {
+    created: function() {
+      var data = JSON.parse(this.gdata);
+      var width = 440,
+        i = 0,
+        barHeight = 20;
+
+      var x = d3.scale.linear()
+        .domain([0, 400])
+        .range([400, 0]);
+
+      var chart = d3.select(this.$.charts)
+        .attr("width", width)
+        .attr("height", 200);
+
+      var bar = chart.selectAll("g")
+        .data(data[0])
+        .enter().append("g")
+          .attr("transform", function() {
+            return "translate(" + 110*i++ + ", 100) scale(1, -1)";
+          })
+          .append("rect")
+            .attr("width", 90)
+            .attr("height", function(d) {
+              return d;  
+            });
+
+        bar.append("text")
+          .attr("x", 0)
+          .attr("y", 40)
+          .attr("dy", ".71em")
+          .text('hi');
+      }
+  });
+</script>
 </polymer-element>
